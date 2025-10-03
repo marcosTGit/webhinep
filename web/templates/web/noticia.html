@@ -1,0 +1,115 @@
+{% extends 'web/base.html' %}
+{% load static %}
+
+{% block title %}
+  HINEP
+{% endblock %}
+
+{% block content %}
+{% comment %} {% include 'web/test.html' %} {% endcomment %}
+  <section id="contenido">
+    <div class="container">
+      <!-- 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 -->
+      <!-- 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 -->
+      <!-- 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 -->
+      <!-- 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 -->
+      <!-- 000000000000000000000000000000000000000               NOTICIAS HINEP                  000000000000000000000000000000 -->
+
+      {% if noticia %}
+        <div class="container mt-3">
+            <div class="row">
+                <!-- Fecha de publicación y autor -->
+                <div class="col-12 text-left mb-0">
+                    <small class="text-muted">{{ noticia.fecha_publicacion }}</small>
+                </div>                                
+                <!-- Título de la noticia -->
+                <div class="col-12">
+                    <h5 class="mb-3 text-left">{{ noticia.copete }}</h5>
+                    <h1 class="mb-1 text-center">{{ noticia.titulo }}</h1>
+                </div>
+                
+                <!-- Imagen de la noticia -->
+                <div class="row">
+                    {% if noticia.imagen %}
+                        {% if noticia.contenido_destacado %}
+                            <div class="col-6 text-center mt-2">
+                                <img src="/media/{{ noticia.imagen }}" alt="{{ noticia.imagen }}" class="img-fluid rounded mb-0" style="width: {{ noticia.ajustar_imagen }}%;">
+                                <div class="row">
+                                  <small class="text-muted">{{ noticia.epigrafe }}</small>
+                                </div>
+                            </div>
+                        {% else %}
+                            <img src="/media/{{ noticia.imagen }}" alt="{{ noticia.imagen }}" class="img-fluid rounded mb-0" style="width: {{ noticia.ajustar_imagen }}%;">
+                            
+                            <div class="col-12 text-left mt-0">
+                                <small class="text-muted">{{ noticia.epigrafe }}</small>
+                            </div>      
+                        {% endif %}
+                    {% endif %}
+
+                    {% if noticia.contenido_destacado %}
+                        <div class="col-6 {{noticia.estilo_destacado}}">
+                            <h4 class="mb-3 mt-3 text-center"><strong>{{ noticia.titulo_destacado }}</strong></h4>
+                            <p class="text-justify">
+                              {{noticia.estilo_destacado}}
+                                {{ noticia.contenido_destacado|linebreaksbr|safe }}
+                            </p>
+                        </div>
+                    {% endif %}
+                </div>
+                <!-- Cuerpo de la noticia -->
+                <div class="col-12 mt-4">
+                    <p class="text-justify">
+                        {{ noticia.contenido|linebreaksbr|safe }}
+                    </p>
+                </div>
+                <!-- Botón para regresar -->
+                {% comment %} <div class="col-12 text-center mt-4">
+                    <a href="" class="btn btn-primary">Regresar a todas las noticias</a>
+                </div> {% endcomment %}
+            </div>
+        </div>
+      {% endif %}
+      <!-- 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 -->
+      <!-- 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 -->
+      <!-- 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 -->
+      <!-- 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 -->
+      <!-- 000000000000000000000000000000000000000               NOTICIAS PORTAL                  000000000000000000000000000000 -->
+
+      {% if noticia_portal %}
+        <div class="container mt-3">
+            <div class="row">
+                <!-- Fecha de publicación y autor -->
+                <div class="col-12 text-left mb-0">
+                    <small class="text-muted">{{ noticia_portal.publicado }}</small>
+                </div>                                
+                <!-- Título de la noticia -->
+                <div class="col-12">
+                    <h5 class="mb-3 text-left">{{ noticia_portal.copete }}</h5>
+                    <h1 class="mb-1 text-center">{{ noticia_portal.titulo }}</h1>
+                </div>
+                
+                <!-- Imagen de la noticia -->
+                <div class="row">
+                    {% if noticia_portal.imagen %}
+                            <img src="{{ noticia_portal.imagen }}" alt="{{ noticia_portal.imagen }}" class="img-fluid rounded mb-0" style="width: 70%;" >
+                    {% endif %}
+                </div>
+                <!-- Cuerpo de la noticia -->
+                <div class="col-12 mt-4">
+                    {{ noticia_portal.contenido|safe }}
+                </div>
+                <!-- Botón para regresar -->
+                {% comment %} <div class="col-12 text-center mt-4">
+                    <a href="" class="btn btn-primary">Regresar a todas las noticias</a>
+                </div> {% endcomment %}
+            </div>
+        </div>
+      {% endif %}      
+    </div>
+  </section>
+  {% comment %} {% include 'web/ubicacion.html' %} {% endcomment %}
+  {% include 'web/noticias.html' %}
+  {% include 'web/mas_noticias.html' %}
+  {% include 'web/galeria.html' %}
+{% endblock %}

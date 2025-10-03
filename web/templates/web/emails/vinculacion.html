@@ -1,0 +1,25 @@
+{% extends "web/emails/base_email.html" %}
+
+{% block content %}
+    <p>Hola {{ user_name }},</p>
+    
+    <p>Has sido invitado a vincular tu cuenta a nuestra plataforma.</p>
+    
+    <p><strong>Detalles de la vinculación:</strong></p>
+    <ul>
+        <li>Plataforma: {{ platform_name }}</li>
+        <li>Rol: {{ user_role }}</li>
+        <li>Expira: {{ expiration_date }}</li>
+    </ul>
+    
+    <p>Para completar el proceso de vinculación, haz clic en el siguiente botón:</p>
+    
+    <div style="text-align: center; margin: 25px 0;">
+        <a href="{{ vinculation_url }}" class="button button-success" 
+           style="font-size: 16px; padding: 12px 30px;">
+            Vincular Cuenta
+        </a>
+    </div>
+    
+    <p>Si no reconoces esta solicitud, por favor ignora este email.</p>
+{% endblock %}

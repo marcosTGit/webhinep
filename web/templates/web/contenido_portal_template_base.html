@@ -1,0 +1,112 @@
+{% load static %}
+
+{% for con in contenido.data %}
+  {# <li>titulo: {{ con.attributes.titulo }}</li> {# titulo #}
+  {# <li>tipo_contendido: {{ con.attributes.tipo }}</li> #} {# tipo si el contenido es "contenidotexto", "atajos", "imagencarousel", #}
+  {# <li>titulo_visible: {{ con.attributes.titulo_visible }}</li> #} {# si activo este valor mosntramos los valor3es #}
+  {# <li>meta count: {{ con.relationships.contenidos.meta.count }}</li> #} {# si activo este valor mosntramos los  #}
+  {% if con.relationships.contenidos.data %}
+    {% for data in con.relationships.contenidos.data %}
+      {# <li>id: {{ data.id }}</li> #}
+      {# <li>type: {{ data.type }}</li> #}
+
+      {% for contenido in contenido.included %}
+        {% if contenido.id == data.id %}
+            {#<li>id: {{ contenido.attributes.orden }} CONTADOR: {{forloop.counter0}}</li>#}
+
+            {% if con.attributes.tipo == 'contenidotexto' %}
+              {# INICIO CONTENIDO TEXTO #}
+              {% if contenido.attributes.orden == 1 %}
+                <section id="">
+                  <div class="container">
+                    <div class="row mt-3 mb-12">
+                      <div class="col-md-12">
+              {% endif %}
+                    
+
+              {# tipo si el contenido es "contenidotexto", "atajos", "imagencarousel", #}
+              {# <li>id: {{ contenido.id }}</li> #}
+              {% if contenido.attributes.componente.attributes.titulo_visible %}
+                {# si activo este valor mosntramos los valor3es #}
+                <h2 class="text-center">{{ contenido.attributes.componente.attributes.titulo }} {# titulo #}</h2>
+                {% include 'web/divisor_titulo.html' %}
+              {% endif %}
+              {{ contenido.attributes.componente.attributes.texto|safe }}
+
+              {% if contenido.attributes.componente.attributes.imagenes %}
+                {% for imagen in contenido.attributes.componente.attributes.imagenes %}
+                  <div class="col-8 align-content-center center mt-2 gallery">
+                    <a href="{{ imagen }}" data-lightbox="galeria" data-title="{{ imagen.titulo }}"><img src="{{ imagen }}" class="img-fluid rounded mb-0 img-fluid" alt="Imagen {{ forloop.counter }}" /></a>
+                  </div>
+                {% endfor %}
+              {% endif %}
+                
+              {# FIN CONTENIDO TEXTO  #}
+              {% if contenido.attributes.orden  == con.relationships.contenidos.meta.count %}
+                      </div>
+                    </div>
+                  </div>
+                </section>  
+              {% endif %}
+            {% endif %}  {#  FIN DE CONTENIDO TEXTO #}
+
+            {#00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000#}
+            {#00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000#}
+            {#00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000#}
+            {#  CONTENIDO ATAJO #}
+            {% if con.attributes.tipo == 'atajo' %}
+              {# tipo si el contenido es "contenidotexto", "atajos", "imagencarousel", #}
+              {# APERTURA DEL ATAJO #}
+              {% if contenido.attributes.orden  == 1 %}
+                {# <li>INICIO DE ATAJO</li> #}
+                <div class="row text-center ">
+              {% endif %}
+
+              {% if contenido.attributes.componente.attributes.titulo_visible and contenido.attributes.componente.attributes.tipo_enlace == 'externo' %}
+                  {# si activo este valor mosntramos los valor3es #}
+                
+                  <div class="col-md-{% widthratio 12 con.relationships.contenidos.meta.count 1 %} aos-init aos-animate bg-{{ contenido.attributes.componente.attributes.color }}" data-aos="fade-up">
+                    <div class="p-3 text-white rounded">
+                      <div class="mb-2">
+                        <i class="fs-1 fa-2x {{ contenido.attributes.componente.attributes.nombre_icono }}"></i>
+                    
+                      </div>
+                      <h5 class="">
+                        <a href="{{ contenido.attributes.componente.attributes.enlace_externo }}" class="text-white">
+                            {{ contenido.attributes.componente.attributes.titulo }}
+                        </a>
+                      </h5>
+                      {% comment %} <p></p> {% endcomment %}
+                    </div>
+                  </div>              
+              
+
+              {% else %}
+                  <div class="col-md-{% widthratio 12 con.relationships.contenidos.meta.count 1 %} aos-init aos-animate bg-{{ contenido.attributes.componente.attributes.color }}" data-aos="fade-up">
+                    <div class="p-3 text-white rounded">
+                      <div class="mb-2">
+                        <i class="fs-1 fa-2x {{ contenido.attributes.componente.attributes.nombre_icono }}"></i>
+                    
+                      </div>
+                      <h5 class="">
+                        {{ contenido.attributes.componente.attributes.titulo }}
+                      </h5> 
+                      {% comment %} <p></p> {% endcomment %}
+                    </div>
+                  </div>                      
+              {% endif %}
+
+              {# CERRAMOS EL ATAJO DEL ATAJO #}
+              {% if contenido.attributes.orden  == con.relationships.contenidos.meta.count %}
+                  </div>
+              {% endif %}
+
+            {% endif %}
+            {% comment %} {% if con.attributes.tipo == 'imagencarousel' %}
+              {# tipo si el contenido es "contenidotexto", "atajos", "imagencarousel", #}
+            {% endif %} {% endcomment %}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}

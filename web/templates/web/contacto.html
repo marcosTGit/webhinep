@@ -1,0 +1,206 @@
+{% load static %}
+{% include 'web/sugerencias.html' %}
+<div class="container mt-5" id="contacto">
+  <div class="row">
+    {% include 'web/divisor_titulo.html' %}
+    <div class="col-md-6 col-12 mb-3">
+      <h2>Contacto</h2>
+      <h4>Cuenta de correo oficial:</h4>
+      <a href="mailto:hinep@catamarca.gov.ar"><h3 class="text-danger"><i class="fa-regular fa-envelope"></i>hinep@catamarca.gov.ar</h3></a>
+
+      <div class="bg-req-quaternary">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 p-3 text-center text-white">
+              <h4>Boletin informativo</h4>
+              <h5>Para recibir notificaciones y mantenerte informado de eventos registra tu email</h5>
+              <div id="div_respuesta"></div>
+              <input id="mail_suscribir" class="form-control" type="text" placeholder="ingresa tu email y suscribite" title="suscribie al boletin de Noticias" />
+              <input class="form-control btn-success border-success btn bg-req-tertiary" type="button" name="" id="btn_suscribir" value="SUSCRIBIR" />
+              <div id="div_mensaje"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container my-5">
+        <h2 class="text-center mb-4">Links de Interés</h2>
+        <div class="row g-4">
+          <!-- link Ministerio de salud -->
+            <div class="row">
+                <div class="card h-100 shadow-sm">
+                <div class="row g-0 align-items-center">
+                    <div class="col-3 d-flex justify-content-center">
+                    <img src="{% static 'web/images/logo-cat.jpg' %}" class="img-fluid p-2" alt="Bootstrap" />
+                    </div>
+                    <div class="col-9">
+                    <div class="card-body">
+                        <h5 class="card-title">MINISTERIO DE SALUD</h5>
+                        <p class="card-text">
+                            Contacto: Dirección: Chacabuco 169<br>
+                            Correo electrónico: ministeriodesaludcatamarca@gmail.com</p>
+                        <a href="https://portal.catamarca.gob.ar/organismos/ministerio-de-salud" target="_blank" class="btn btn-primary btn-sm w-100">Ir al sitio</a>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Link Sap Catamarca -->
+            <div class="row">
+                <div class="card h-100 shadow-sm">
+                <div class="row g-0 align-items-center">
+                    <div class="col-3 d-flex justify-content-center">
+                    <img src="{% static 'web/images/logo-cat.jpg' %}" class="img-fluid p-2" alt="Django" />
+                    </div>
+                    <div class="col-9">
+                    <div class="card-body">
+                        <h5 class="card-title">Sociedad Argentina de Pediatria filial Catamarca</h5>
+                        <p class="card-text">Docimicilio: Av. Virgen del Valle 1050, San Fernando del Valle de Catamarca, Argentina</p>
+                        <a href="https://www.facebook.com/sapCatamarca" target="_blank" class="btn btn-primary btn-sm w-100">Ir al sitio</a>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!-- link Cooperadora HINEP -->
+            <div class="row">
+                <div class="card h-100 shadow-sm">
+                <div class="row g-0 align-items-center">
+                    <div class="col-3 d-flex justify-content-center">
+                    <img src="{% static 'web/images/hinep-cop.jpg' %}" class="img-fluid p-2" alt="Django" />
+                    </div>
+                    <div class="col-9">
+                    <div class="card-body">
+                        <h5 class="card-title">Asociacion Cooperadora Hospital Interzonal De Niños Eva Peron - Catamarca </h5>
+                        <p class="card-text">Asociación sin fines de lucro que pretende acompañar y contener la asistencia de los niños, niñas y adolescentes del único hospital pediátrico de Catamarca HINEP</p>
+                        <a href="https://www.facebook.com/cooperadorahinep" target="_blank" class="btn btn-primary btn-sm w-100">Ir al sitio</a>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    
+
+      {% comment %}
+
+      <h2>Contacto</h2>
+      <hr />
+
+      <!-- Mostrar mensajes de éxito -->
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-success" role="alert">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+
+      <!-- Formulario -->
+      <form method="post" novalidate>
+        {% csrf_token %}
+        <div class="form-group">{{ form_contacto.nombre }}</div>
+        <div class="form-group">{{ form_contacto.email }}</div>
+        <div class="form-group">{{ form_contacto.asunto }}</div>
+        <div class="form-group">{{ form_contacto.mensaje }}</div>
+        <button id="btn_enviar_contacto" type="button" class="btn btn-lg btn-primary bg-req-primary border-primary">Enviar</button>
+      </form>
+      {% endcomment %}
+    </div>
+
+    <div class="col-md-6 col-12 mb-3">
+      <h2>Telefonos utiles</h2>
+      <section>
+        <div>
+          <div class="aos-init aos-animate" data-aos="fade-up">
+            <h5>Servicio social</h5>
+            <span>Solicitud de turnos e informes, armado de expedientes, derivaciones etc.</span>
+          </div>
+          <ul style="list-style: none;">
+            <li class="text-success">
+              <h5>
+                <i class="text-success icono-arg-whatsapp-telefono"></i>
+                <a class="text-success" href="https://api.whatsapp.com/send/?phone=543834319616&text=Hola, necesito hacer una consulta&type=phone_number&app_absent=1">383-4319616</a>
+              </h5>
+            </li>
+            {% comment %}
+            <li class="text-success">
+              <h5>
+                <i class="text-success icono-arg-whatsapp-telefono"></i>
+                <a class="text-success" href="https://api.whatsapp.com/send/?phone=543834239704&text=Hola, necesito un turno&type=phone_number&app_absent=1">383-4239704</a>
+              </h5>
+            </li>
+            {% endcomment %}
+          </ul>
+          <div class="aos-init aos-animate" data-aos="fade-up">
+            <h5>Oficina de Comunicación a Distancia</h5>
+            <span>Horarios de atencion De lunes a viernes de 08:00 a 19:00</span>
+            <span>email: ocd_catamarca@hotmail.com</span>
+          </div>
+          <ul style="list-style: none;">
+            <li class="text-success">
+              <h5>
+                <i class="text-success icono-arg-whatsapp-telefono"></i>
+                <a class="text-success" href="https://api.whatsapp.com/send/?phone=543834792292&text=Hola, necesito un turno&type=phone_number&app_absent=1">383-4792292</a>
+              </h5>
+            </li>
+            <a class="text-primary" href="/salud-digital/o.c.d./2033" title="mas informacion">Oficina de Comunicacion a Distancia</a>
+          </ul>
+        </div>
+
+        <div>
+          <div class="aos-init aos-animate" data-aos="fade-up">
+            <h5>Servicio de Diagnóstico Por Imágenes</h5>
+            <ul>
+              <li>
+                Programación de turnos:<ul>
+                  <li>ECOGRAFIA: Solo días Lunes hasta completar disponibilidad a partir de las 8 am</li>
+                  <li>TAC:*Lunes a Viernes de 8 a 12 hs - Enviar foto del pedido médico, Apellido y Nombre, Dni, Fecha de Nacimiento.</li>
+                  <li>RADIOLOGÍA:*Por orden de llegada.</li>
+                </ul>
+              </li>
+              <li>Tu consulta, solo por mensaje de texto (Wtsp), sera atendida dentro de las 48hs ⛔ No se reciben notas de voz ni llamadas por WhatsApp</li>
+            </ul>
+          </div>
+          <ul style="list-style: none;">
+            <li class="text-success">
+              <h5>
+                <i class="text-success icono-arg-whatsapp-telefono"></i>
+                <a class="text-success" href="https://api.whatsapp.com/send/?phone=543834239732&text=Hola, necesito un turno&type=phone_number&app_absent=1">383-4239732</a>
+              </h5>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="aos-init aos-animate" data-aos="fade-up">
+            <h5>Servicio de Laboratorio</h5>
+            <span>Solicitud de información general y horarios de atención, etc.</span>
+          </div>
+          <ul style="list-style: none;">
+            <li class="text-success">
+              <h5>
+                <i class="text-success icono-arg-whatsapp-telefono"></i>
+                <a class="text-success" href="https://api.whatsapp.com/send/?phone=543834239692&text=Hola, necesito informacion de&type=phone_number&app_absent=1">383-4239692</a>
+              </h5>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <div class="aos-init aos-animate" data-aos="fade-up">
+            <h5>Servicio de Salud Mental</h5>
+            <span>Solicitud de información general y horarios de atención, etc.</span>
+          </div>
+          <ul style="list-style: none;">
+            <li class="text-success">
+              <h5>
+                <i class="text-success icono-arg-whatsapp-telefono"></i>
+                <a class="text-success" href="https://api.whatsapp.com/send/?phone=543834319616&text=Hola, necesito informacion de&type=phone_number&app_absent=1">383-4319616</a>
+              </h5>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

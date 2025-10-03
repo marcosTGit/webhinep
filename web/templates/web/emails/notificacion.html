@@ -1,0 +1,17 @@
+{% extends "web/emails/base_email.html" %}
+
+{% block content %}
+    <p>Hola {{ user_name }},</p>
+    
+    <p>Tienes nuevas notificaciones en tu cuenta:</p>
+    
+    <div class="notification">
+        <h3>{{ notification_title }}</h3>
+        <p>{{ notification_message }}</p>
+        <p><strong>Fecha:</strong> {{ notification_date }}</p>
+    </div>
+    
+    <p>Para ver más detalles, visita tu panel de notificaciones.</p>
+    
+    <p>Saludos cordiales,<br>El equipo de Tu Empresa</p>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% load static %}
+<div class="container-fluid" role="navigation"  aria-current="page">
+  <nav class="nav navbar navbar-expand-lg bg-primary">
+    <a class="navbar-brand " id="inicio" href="/">
+      <img class="img-fluid img-thumbnail" src="{% static 'web/images/logo.png' %}" width="40" height="40">
+    </a>
+    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" background-image="{% static 'web/images/logo.png' %}" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="nav me-auto mb-2 mb-lg-0">
+        {#000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000#}
+        {#000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000#}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle " href="#" id="nuestro_hospital" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Nuestro Hospital</a>
+          <ul class="dropdown-menu" aria-labelledby="nuestro_hospital">
+            <a class="nav-link dropdown-item" href="/autoridades">Autoridades</a>
+            <a class="nav-link dropdown-item" href="/historia">Historia</a>
+            <a class="nav-link dropdown-item" href="/nuestra_funcion">Nuestra Funcion</a>
+            <a class="nav-link dropdown-item" href="/account/login/">Institucional</a>
+            <a class="nav-link dropdown-item" href="/hinep/enfermeria/2040" >Departamento Enfermeria</a>
+          </ul>
+        </li>
+        {#000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000#}
+        {#000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000#}
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle " href="#" id="paciente_comunidad" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pacientes y comunidad</a>
+          <ul class="dropdown-menu" aria-labelledby="paciente_comunidad">
+            {% comment %} <a class="dropdown-item" href="/solicitar_turno">Solicitar Turno</a> {% endcomment %}
+            {% comment %} <a class="dropdown-item" href="/horarios_de_atencion">Horarios de atencion</a> {% endcomment %}
+            <a class="nav-link dropdown-item scroll-link" href="/#galeria">Galeria de imagenes</a>
+            <a class="nav-link dropdown-item" href="/#ubicacion">Como llegar</a>
+          </ul>
+        </li>
+        {# 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 #}
+        {# 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 #}
+        <li class="nav-item">
+          <a class="nav-link " href="/noticias">Noticias</a>
+        </li> 
+
+        {% comment %}000000000000000000000000000000000000000000000000000000000000000000000000000000000{% endcomment %}
+        {% comment %}000000000000000000000000000000000000000000000000000000000000000000000000000000000{% endcomment %}
+
+        <li class="nav-item">
+          <a class="nav-link scroll-link active" href="/#contacto">Contacto</a>
+        </li>
+      </ul>
+      {% comment %} <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form> {% endcomment %}
+    </div>
+  </nav>
+</div>

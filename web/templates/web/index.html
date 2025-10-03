@@ -1,0 +1,40 @@
+{% extends 'web/base.html' %}
+{% load static %}
+
+
+{% block title %}HINEP{% endblock %}
+
+{% block content %}
+    {% include 'web/carrusel.html' %}
+    {% comment %} {% include 'web/test.html' %} {% endcomment %}
+    {% comment %}000000000000000000000000000 mensaje de error 0000000000000000000{% endcomment %}
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'error' %}
+                <div class="alert alert-danger">{{ message }}</div>
+            {% else %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    {% comment %}000000000000000000000000000 Fin mensaje de error 0000000000000000000{% endcomment %}
+    <section id='contenido'>
+        <div class="container mt-2 mb-2">
+            {% if template %} 
+                {% include template %}         
+            {% else%}
+                {% include 'web/resena.html' %} 
+            {% endif %}
+        </div>
+    </section>
+
+
+{% endblock %}
+
+{% block contenido_extra %}
+    {% include 'web/paciente_comunidad.html' %}
+    {% include 'web/ubicacion.html' %}
+    {% include 'web/galeria.html' %}
+    {% include 'web/noticias.html' %}
+    {% include 'web/mas_noticias.html' %}
+{% endblock %}

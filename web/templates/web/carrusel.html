@@ -1,0 +1,32 @@
+{% load static %}
+{% if sliders %}
+    <div id="carouselExampleControls" class="carousel slide h-100" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            {% for slider in sliders %}
+                
+                <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                    {% comment %} src="{% static 'web/images/slide2.jpg' %}" {% endcomment %}
+                    <img class="d-block w-100" src="/media/{{ slider.image }}" alt="First slide">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h1 class="{{slider.titulo_color}}"><strong>{{ slider.titulo }}</strong></h1>
+                        <h5 class="{{slider.titulo_color}}"><strong>{{ slider.subtitulo }}</strong></h5>
+                        {% if slider.link and slider.link_texto %}
+                            <a class="btn btn-danger" href="{{ slider.link }}">{{ slider.link_texto}}</a>
+                        {% endif %}
+                        
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+        {% comment %} botones {% endcomment %}
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only"></span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only"></span>
+        </a>
+    </div>
+{% endif %}

@@ -1,0 +1,38 @@
+{% load static %}
+{% if imagenes %}
+<section id="galeria">
+    <div class="container mt-4">
+        <h1>Galería</h1>
+        {% include 'web/divisor.html' %}	
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% comment %}
+                <li> {{ imagenes.0.title }}</li>
+                <li> {{ imagenes.0.description }}</li>
+                <li> {{ imagenes.0.image }}</li>
+            {% endcomment %}
+
+            {% for imagen in imagenes %}
+            <div class="col">
+                <div class="card gallery">
+                    <a href="{{ imagen.image.url }}" data-lightbox="galeria" data-title="{{ imagen.titulo }}">
+                        <img src="{{ imagen.image.url }}" alt="{{ imagen.titulo }}" class="card-img-top" >
+                    {% comment %} <img src="/media/{{ imagen.image }}" class="card-img-top" alt="{{ image.title }}"> {% endcomment %}
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ imagen.title }}</h5>
+                        <p class="card-text">{{ imagen.description }}</p>
+                        {% if imagen.link %}
+                        <a href="{{ imagen.link }}" class="btn btn-primary" target="_blank">Más info</a>
+                        {% endif %}
+                        <p class="text-muted"><small>Subido el {{ imagen.uploaded_at|date:"d/m/Y H:i" }}</small></p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+{% endif %}
+

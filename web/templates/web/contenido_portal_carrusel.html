@@ -1,0 +1,85 @@
+{% load static %}
+
+{% for con in contenido.data %}
+    {# <li>titulo: {{ con.attributes.titulo }}</li> {# titulo #}
+    {# <li>tipo_contendido: {{ con.attributes.tipo }}</li>#} {# tipo si el contenido es "contenidotexto", "atajos", "imagencarousel", #}
+    {# <li>titulo_visible: {{ con.attributes.titulo_visible }}</li>#} {# si activo este valor mosntramos los valor3es #}
+    {% if con.attributes.tipo == "contenidotexto" and con.attributes.titulo_visible %}
+        <h2 class="text-center"> 
+        {{ con.attributes.titulo }} {# titulo #}
+        </h2>
+        {% include 'web/divisor_titulo.html' %}	
+
+    {% endif %}
+    {% if con.relationships.contenidos.data %}
+        {% for data in con.relationships.contenidos.data %}
+            {# <li>id: {{ data.id }}</li> #}
+            {# <li>type: {{ data.type }}</li> #}
+            {% for contenido in contenido.included %}
+                {% if contenido.id == data.id %}
+                        {%if con.attributes.tipo == "contenidotexto"%} {# tipo si el contenido es "contenidotexto", "atajos", "imagencarousel", #}
+                            <div class="col-md-6">
+
+                            {# <li>id: {{ contenido.id }}</li> #}
+                            {%if  contenido.attributes.componente.attributes.titulo_visible %} {# si activo este valor mosntramos los valor3es #}
+                                <h2 class="text-center"> 
+                                    {{ contenido.attributes.componente.attributes.titulo }} {# titulo #}
+                                </h2>
+                            {% else %}
+
+
+                            {% endif %}
+                            {{ contenido.attributes.componente.attributes.texto | safe }}
+
+                            {# <li> {{ contenido.attributes.componente.attributes.imagenes | length }} </li> #}
+                           </div>
+
+                        {% endif %}
+
+                        {% comment %}
+                        {%if con.attributes.tipo == "atajo"%} {# tipo si el contenido es "contenidotexto", "atajos", "imagencarousel", #}
+                            {# <li>id: {{ contenido.id }}</li> #}
+                            {%if  contenido.attributes.componente.attributes.titulo_visible %} {# si activo este valor mosntramos los valor3es #}
+                                <li>atajo titulo: {{ contenido.attributes.componente.attributes.titulo }}</li> {# titulo #}
+                            {% endif %} 
+                            <li>texto: {{ contenido.attributes.componente.attributes.texto|length }}</li> 
+
+                        {% endif %}
+                        {% endcomment %}
+
+                        {% comment %} {%if con.attributes.tipo == "imagencarousel"%} {# tipo si el contenido es "contenidotexto", "atajos", "imagencarousel", #}
+                        {% endif %} {% endcomment %}
+
+                {% endif %}
+
+            {% endfor %}
+
+
+        {% endfor %}
+    {% endif %}
+
+{% endfor %}                
+<div class="col-md-6 text-center mh-10">
+    <div id="carouselImagenes" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+        {% for imagen in contenido.carrusel %}
+                    
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <a href="{{ imagen }}" data-lightbox="galeria" data-title="{{ imagen.titulo }}">
+                    <img src="{{ imagen }}" alt="{{ imagen.titulo }}" class="card-img-top" >
+                    {% comment %} <img src="/media/{{ imagen.image }}" class="card-img-top" alt="{{ image.title }}"> {% endcomment %}
+                </a>
+                {% comment %} <img src="{{ imagen }}" class="d-block w-100 img-fluid" alt="Imagen {{ forloop.counter }}" /> {% endcomment %}
+            </div>
+        {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselImagenes" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselImagenes" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+{% load static %}
+<div class="bg-secondary">
+    <section>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="text-black mt-8 text-white">MAS NOTICIAS </h2>
+                </div>
+            {% include 'web/divisor_titulo.html' %}	
+            </div>
+        </div>
+        <div class="row card-group">
+            {% for n in mas_noticias.data %}
+                {% if forloop.counter0|divisibleby:3 and not forloop.first %}
+                    </div><div class="row">
+                {% endif %}
+                <div class="col-md-4 g-3">
+                    <div class="card" style="">
+                        <img src="{{ n.attributes.imagen }}" class="img-fluid card-img-top" alt="{{n.attributes.slug}}" style="max-height: 18rem;">
+
+                        <div class="card-header bg-req-quaternary">
+                            <a href="/noticia/{{ n.attributes.slug }}">
+                                <h5 class="card-title text-white">{{ n.attributes.titulo }}</h5>
+                            </a>
+                        </div>
+                        {% if n.attributes.copete|length %}
+                        <div class="card-body">
+                            <p class="card-text">{{ n.attributes.copete }}</p>
+                        </div>
+                        {% endif %}
+                        <div class="card-footer">
+                            <p class="card-text">{{ n.attributes.publicado }}</p>
+                            {% comment %} <p class="card-text">{{ n.attributes.copete }}</p> {% endcomment %}
+                            {% comment %} <p class="card-text">{{ n.attributes.visitas }}</p> {% endcomment %}
+                            {% comment %} <p class="card-text">{{ n.id }}</p> {% endcomment %}
+                            {% comment %} <p class="card-text">{{ n.attributes.slug }}</p> {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        {% comment %}
+            {% if mas_noticias.included|length > 1 %}
+                {% for d in mas_noticias.included %}
+                    <h2 class="text-center">{{ d.attributes.componente.attributes.titulo }}</h2>
+                    {{ d.attributes.componente.attributes.texto|safe }}
+                {% endfor %}
+            {% endif %}
+        {% endcomment %}
+    </section>
+</div>

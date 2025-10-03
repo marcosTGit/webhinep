@@ -1,0 +1,32 @@
+{% load static %}
+
+<div class="bg-primary" id="sugerencias">
+    <section>
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#div_sugerencia" aria-expanded="true" aria-controls="div_sugerencia"><strong>SUGERENCIAS</strong></button></h2>
+                <div id="div_sugerencia" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <section>
+                            <div class="container">
+                                <h5>
+                                    <strong>Este espacio está pensado para que puedas compartir tus ideas, sugerencias u opiniones sobre el hospital. Todas las voces son valiosas y nos ayudan a mejorar</strong>
+                                </h5>
+                            </div>
+                        </section>
+                        <form action="sugerencias" method="post" name="form_sugerencia" id="form_sugerencia">
+                            {% csrf_token %}
+                            {{ form_sugerencia }}
+                            
+                            <div class="form-group">
+                                <div id="div_mensaje_sugerencia"></div>
+                                <button id="btn_sugerencia" class="btn btn-success btn-lg" type="button" id="btn_form_sugerencia" disabled >Enviar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>

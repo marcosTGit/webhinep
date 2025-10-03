@@ -1,0 +1,53 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block title %}
+  HINEP
+{% endblock %}
+
+{% block content %}
+    {% include 'web/carrusel.html' %}
+      {% if contenido.carrusel %}
+           <section id="">
+            <div class="container">
+              <div class="row mt-3 mb-12">
+                  {% include 'web/contenido_portal_carrusel.html' %}
+              </div>
+            </div>
+          </section>                  
+      {% else%}
+          {% include 'web/contenido_portal_template_base.html' %}
+      {% endif %}
+      {# <li>imagen: {{ contenido.attributes.componente.attributes.imagen }}</li> #}
+    {% include 'web/mas_noticias.html' %}
+    {% include 'web/galeria.html' %}
+{% endblock %}
+
+{% comment %}
+{% if contenido.included|length > 0 %}
+  <h2 class="text-center">{{ contenido.included.0.attributes.componente.attributes.titulo }}</h2>
+  {% include 'web/divisor_titulo.html' %}
+  <div class="row mt-3 mb-12">
+    <div class="col-md-6">{{ contenido.included.0.attributes.componente.attributes.texto|safe }}</div>
+    <div class="col-md-6 text-center mh-10">
+      <div id="carouselImagenes" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          {% for imagen in contenido.included.0.attributes.componente.attributes.imagenes %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+              <img src="{{ imagen }}" class="d-block w-100 img-fluid" alt="Imagen {{ forloop.counter }}" />
+            </div>
+          {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselImagenes" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselImagenes" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Siguiente</span>
+        </button>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% endcomment %}

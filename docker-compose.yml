@@ -1,0 +1,45 @@
+# version: "3.9"
+
+services:
+  webhinep:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: gunicorn hinep.wsgi:application  --bind 0.0.0.0:5500
+    # command: gunicorn django_app.wsgi:application --bind 0.0.0.0:8000
+    # command: >
+    #   sh -c "python manage.py collectstatic --noinput &&
+    #     gunicorn delparque.wsgi:application --bind 0.0.0.0:5500"
+    hostname: webhinep
+    container_name: "webhinep"
+    volumes:
+      - .:/app
+      - ./static:/app/static
+    ports:
+      - "5500:8000"
+    env_file:
+      - .env
+    # depends_on:
+    #   - db
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./static:/app/static
+    ports:
+      - "5580:80"
+    depends_on:
+      - webhinep
+
+  # db:
+  #   image: postgres:14
+  #   environment:
+  #     POSTGRES_USER: your_db_user
+  #     POSTGRES_PASSWORD: your_db_password
+  #     POSTGRES_DB: your_db_name
+  #   volumes:
+  #     - data_webhinep:/var/lib/postgresql/data
+
+volumes:
+  data_webhinep:

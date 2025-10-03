@@ -1,0 +1,117 @@
+{% load static %}
+<div class="container-fluid bg-req-primary">
+  <nav class="navbar navbar-expand-lg bg-req-primary">
+    <a class="navbar-brand text-white" id="inicio" href="/">
+      <img class="img-fluid img-thumbnail" src="{% static 'web/images/logo.png' %}" width="40" height="40">
+    </a>
+    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" background-image="{% static 'web/images/logo.png' %}" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        {#000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000#}
+        {#000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000#}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="#" id="nuestro_hospital" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Nuestro Hospital</a>
+          <ul class="dropdown-menu" aria-labelledby="nuestro_hospital">
+            <a class="dropdown-item" href="/autoridades">Autoridades</a>
+            <a class="dropdown-item" href="/historia">Historia</a>
+            <a class="dropdown-item" href="/nuestra_funcion">Nuestra Funcion</a>
+            <a class="dropdown-item" href="/accounts/profile/">Institucional</a>
+            <a class="dropdown-item" href="/hinep/enfermeria/2040" >Departamento Enfermeria</a>
+          </ul>
+        </li>
+        {#000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000#}
+        {#000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000#}
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="#" id="paciente_comunidad" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pacientes y comunidad</a>
+          <ul class="dropdown-menu" aria-labelledby="paciente_comunidad">
+            {% comment %} <a class="dropdown-item" href="/solicitar_turno">Solicitar Turno</a> {% endcomment %}
+            {% comment %} <a class="dropdown-item" href="/horarios_de_atencion">Horarios de atencion</a> {% endcomment %}
+            <a class="dropdown-item scroll-link" href="/#galeria">Galeria de imagenes</a>
+            <a class="dropdown-item" href="/#ubicacion">Como llegar</a>
+          </ul>
+        </li>
+        {# 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 #}
+        {# 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 #}
+        {% include 'web/menu_portal.html' %}
+        {# 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 #}
+        {# 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 #}
+        {# 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 #}
+        {# 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 #}
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/noticias">Noticias</a>
+        </li> 
+
+        {% comment %}000000000000000000000000000000000000000000000000000000000000000000000000000000000{% endcomment %}
+        {% comment %}000000000000000000000000000000000000000000000000000000000000000000000000000000000{% endcomment %}
+
+        <li class="nav-item">
+          <a class="nav-link scroll-link text-white" href="/#contacto">Contacto</a>
+        </li>
+      </ul>
+      {% comment %} <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form> {% endcomment %}
+    </div>
+  </nav>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{# 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 #}
+{# 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 #}
+{% comment %}
+        {% for m in menu.values  %}
+          {% if forloop.counter0 > 1  %}
+            {% if m.titulo %}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" id="{{m.titulo}}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{m.titulo}}- {{ m.key }}</a>
+                <ul class="dropdown-menu" aria-labelledby="{{m.titulo}}">
+                  {% for sm in m.submenu.values %}
+                    {% if sm.submenu %}
+                      <li class="dropdown dropend">
+                        <a class="dropdown-item dropdown-toggle" href="#" id="{{sm.titulo}}" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{sm.titulo}}</a>
+                        <ul class="dropdown-menu" aria-labelledby="{{sm.titulo}}">
+                          {% for ssm in sm.submenu.values %}
+                            {% if ssm.submenu %}
+                              <li class="dropdown dropend">
+                                <a class="dropdown-item dropdown-toggle" href="#" id="{{ssm.titulo}}" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ssm.titulo}}</a>
+                                <ul class="dropdown-menu" aria-labelledby="{{ssm.titulo}}">
+                                  {% for sssm in ssm.submenu.values %}
+                                    <li><a class="dropdown-item text-black" href="/{{ sssm.url }}">{{ sssm.titulo }}</a></li>
+                                  {% endfor %}
+                                </ul>
+                              </li>
+                            {% else %}
+                              <li><a class="dropdown-item" href="/{{ ssm.url }}">{{ ssm.titulo }}</a></li>
+                            {% endif %}
+                          {% endfor %}
+                        </ul>
+                      </li>
+                    {% else %}
+                      <li>
+                        <a class="nav-link text-black" href="/{{sm.url}}">{{sm.titulo}}</a>
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+{% endcomment %}
+

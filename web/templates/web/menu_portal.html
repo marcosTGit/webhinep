@@ -1,0 +1,47 @@
+{% load static %}
+{% for item in menu.values %}
+    {% if forloop.counter0 > 2 and forloop.counter0 < 7 %} {# el if que ocntrola desde que posicion comienza a  mostrar#}
+        {% if item.submenu %}
+            <li class="nav-item dropdown">
+                <a id="{{item.key}}" class="nav-link dropdown-toggle text-white" href="#">{{ item.titulo }}</a>
+                <ul class="dropdown-menu" aria-labelledby="{{ item.key}}">
+                    {% for subitem in item.submenu.values %}
+                        <li class="dropdown">
+                            <a id="{{ subitem.key }}" class="dropdown-item" href="/{{ subitem.url|default:'#' }}">
+                                {{ subitem.titulo }}
+                            </a>
+                            {% if subitem.submenu %}
+                                <ul class="dropdown-menu" aria-labelledby="{{ subitem.key }}">
+                                    {% for subsub in subitem.submenu.values %}
+                                        {% comment %} <li><a class="dropdown-item" href="/{{ subsub.url }}">{{ subsub.titulo }} </a></li> {% endcomment %}
+                                        <a id="{{ subsub.key }}" class="dropdown-item" href="/{{ subsub.url }}">{{ subsub.titulo }} </a>
+                                        {% if subsub.submenu %}
+                                            <ul class="dropdown-menu" aria-labelledby="{{ subsub.key }}">
+                                                {% for ssm in subsub.submenu.values %}
+                                                    <li>
+                                                        <a class="dropdown-item" href="/{{ ssm.url }}">{{ ssm.titulo }}</a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% else %}
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/hinep/{{ item.url }}">{{ item.titulo }}</a>
+                {% comment %} <a class="nav-link text-white" href="/noticias_hinep/novedades/1894">Noticias</a> {% endcomment %}
+            </li> 
+        {% endif %}
+    {% endif %}  
+{% endfor %}
+
+{% comment %} <h1>{{menu.574}}</h1> {% endcomment %}
+{% comment %} #{{menu.574.submenu.575}}- {% endcomment %}
+
+
+
