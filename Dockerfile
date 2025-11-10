@@ -1,11 +1,21 @@
-# Base image
-FROM python:3.11
+FROM python:3.11-slim
 
-# Set the working directory
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
 WORKDIR /app
 
-# Install dependencies
+# System deps required for mysqlclient and Django
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    pkg-config \
+    default-libmysqlclient-dev \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install python deps
 COPY requirements.txt .
+RUN pip install --no-cache-dir --upgrade pip setuptools wheel
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy project files

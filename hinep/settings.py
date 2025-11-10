@@ -25,15 +25,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-r-r)h7ig8bjjz@f-brdy9*ojx83ryw004=6oree2f1jwb8easq'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False # produccion
-# DEBUG = True # Desarrollo
-
-# ALLOWED_HOSTS = ['*']  # porduccion
-# ALLOWED_HOSTS = []  # porduccion
-# DEBUG = False # DESARROILLO
-# ALLOWED_HOSTS = ['127.0.0.1']  # DESARROILLO
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1','192.168.0.108']
+DEBUG = os.getenv("DEBUG", "False") == "True"
+ALLOWED_HOSTS = [host.strip() for host in os.getenv("ALLOWED_HOSTS", "*").split(",")]
 
 # Application definition
 
@@ -153,16 +146,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
+# STATIC
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # produccion
+STATIC_ROOT = os.getenv("STATIC_ROOT", os.path.join(BASE_DIR, "static"))
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
+# MEDIA
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.getenv("MEDIA_ROOT", os.path.join(BASE_DIR, "media"))
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = os.getenv("DEFAULT_AUTO_FIELD", 'django.db.models.BigAutoField')
 
-MEDIA_URL = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 PRIVATE_STORAGE_ROOT = BASE_DIR / "private-media"
 # PRIVATE_STORAGE_CLASS = 'private_storage.storage.minio.PrivateMinioStorage'
 # MINIO_PRIVATE_STORAGE_MEDIA_BUCKET_NAME = 'private-files'
