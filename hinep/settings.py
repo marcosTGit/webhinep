@@ -213,7 +213,7 @@ HOST_PORT=config('HOST_PORT')
 # CSRF_TRUSTED_ORIGINS = [f'http://{HOST_IP}:{HOST_PORT}']
 # CSRF_TRUSTED_ORIGINS = [f'http://192.168.0.111:5580']
 # CSRF_TRUSTED_ORIGINS = [f'http://192.168.0.108:8000']
-CSRF_TRUSTED_ORIGINS = [f'http://{HOST_IP}:{HOST_PORT}',f'http://hinep.catamarca.gob.ar', f'https://hinep.catamarca.gob.ar']
+CSRF_TRUSTED_ORIGINS = [f'http://{HOST_IP}:{HOST_PORT}',f'http://hinep.catamarca.gob.ar', f'https://hinep.catamarca.gob.ar', "http://develop-hinep.catamarca.gob.ar", "https://develop-hinep.catamarca.gob.ar"]
 # 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 # 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 # reCAPTCHA Keys
