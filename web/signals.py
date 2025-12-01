@@ -69,7 +69,7 @@ def enviar_notificaciones(sender, instance, created, enviar=False,**kwargs):
             #     fail_silently=False,
             # )
 
-            send_notification_email('marcossebastiant@gmail.com','mtoledo', {
+            send_notification_email(suscripto.email, suscripto.email, {
                 'title': instance.titulo,
                 'message': instance.copete,
                 'date': fecha_actual,
