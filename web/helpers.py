@@ -102,7 +102,7 @@ def send_notification_email(user_email, user_name, notification_data):
  
 def send_vinculation_email(user_email, user_name, vinculation_data):
     """Envía email de vinculación"""
-    subject = "Invitación para vincular cuenta - Tu Empresa"
+    subject = "Invitación para vincular cuenta - H.I.N.E.P"
     template_name = "web/emails/vinculacion.html"
     
     context = {
