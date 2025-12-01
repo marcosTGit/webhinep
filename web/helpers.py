@@ -90,6 +90,7 @@ def send_notification_email(user_email, user_name, notification_data):
         'notification_title': notification_data.get('title', 'Nueva notificación'),
         'notification_message': notification_data.get('message', ''),
         'notification_date': notification_data.get('date', ''),
+        'notification_url': notification_data.get('url', ''),
     }
     
     send_html_email(
