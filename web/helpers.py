@@ -95,6 +95,8 @@ def send_notification_email(user_email, user_name, notification_data):
         'notification_message': notification_data.get('message', ''),
         'notification_date': notification_data.get('date', ''),
         'notification_url': notification_data.get('url', ''),
+        'unvinculation_link': notification_data.get('unvinculation_link', '#'),
+        'unsubscribe_link': notification_data.get('vinculation_url', '#'),        
     }
     
     send_html_email(
