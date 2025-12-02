@@ -33,13 +33,13 @@
                     {% if noticia.imagen %}
                         {% if noticia.contenido_destacado %}
                             <div class="col-6 text-center mt-2">
-                                <img src="/media/{{ noticia.imagen }}" alt="{{ noticia.imagen }}" class="img-fluid rounded mb-0" style="width: {{ noticia.ajustar_imagen }}%;">
+                                <img src="{{ noticia.imagen.url }}" alt="{{ noticia.imagen }}" class="img-fluid rounded mb-0" style="width: {{ noticia.ajustar_imagen }}%;">
                                 <div class="row">
                                   <small class="text-muted">{{ noticia.epigrafe }}</small>
                                 </div>
                             </div>
                         {% else %}
-                            <img src="/media/{{ noticia.imagen }}" alt="{{ noticia.imagen }}" class="img-fluid rounded mb-0" style="width: {{ noticia.ajustar_imagen }}%;">
+                            <img src="{{ noticia.imagen.url }}" alt="{{ noticia.imagen }}" class="img-fluid rounded mb-0" style="width: {{ noticia.ajustar_imagen }}%;">
                             
                             <div class="col-12 text-left mt-0">
                                 <small class="text-muted">{{ noticia.epigrafe }}</small>
