@@ -4,7 +4,11 @@ from django.core.exceptions import ValidationError
 import os
 
 def contruir_url_absoluta(path):
-    default_host = getattr(settings, "DEFAULT_HOST", "http://127.0.0.1:8000")
+    
+    default_host = "https://hinep.catamarca.gob.ar"
+    if settings.DEBUG:
+        default_host = "https://develop-hinep.catamarca.gob.ar"
+                
     return f"{default_host}{path}"
 
 
