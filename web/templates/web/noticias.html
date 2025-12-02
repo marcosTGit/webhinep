@@ -10,29 +10,29 @@
                 </div>
             </div>
             <div class="row card-group">
-                {% for n in noticias %}
+                {% for noticia in noticias %}
                     {% if forloop.counter0|divisibleby:3 and not forloop.first %}
                         </div><div class="row">
                     {% endif %}
                     <div class="col-md-4 g-3">
                         <div class="card" style="">
-                            <img src="/media/{{ n.imagen }}" class="img-fluid card-img-top"  style="max-height: 18rem;">
+                            <img src="{{ noticia.imagen.url }}" class="img-fluid card-img-top"  style="max-height: 18rem;">
 
                             <div class="card-header bg-req-quaternary">
-                                <a href="/noticia/{{ n.token }}">
-                                    <h5 class="card-title text-white">{{ n.titulo }}</h5>
+                                <a href="/noticia/{{ noticia.token }}">
+                                    <h5 class="card-title text-white">{{ noticia.titulo }}</h5>
                                 </a>
                             </div>
-                            {% if n.contenido|length %}
+                            {% if noticia.contenido|length %}
                             <div class="card-body">
                                 <p class="card-text">{{n.copete}}</p>
-                                {% comment %} <p class="card-text">{{ n.contenido }}</p> {% endcomment %}
-                                {% comment %} <p class="card-text">{{ n.attributes.visitas }}</p> {% endcomment %}
-                                {% comment %} <p class="card-text">{{ n.id }}</p> {% endcomment %}
+                                {% comment %} <p class="card-text">{{ noticia.contenido }}</p> {% endcomment %}
+                                {% comment %} <p class="card-text">{{ noticia.attributes.visitas }}</p> {% endcomment %}
+                                {% comment %} <p class="card-text">{{ noticia.id }}</p> {% endcomment %}
                             </div>
                             {% endif %}
                             <div class="card-footer">
-                                <p class="card-text">{{ n.fecha_publicacion }}</p>
+                                <p class="card-text">{{ noticia.fecha_publicacion }}</p>
                             </div>
                         </div>
                     </div>
