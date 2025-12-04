@@ -193,7 +193,6 @@ def Suscribir(request):
 def MostrarNoticia(request, token_noticia=False):
     try:
         uuid.UUID(token_noticia) # intenta validar el valor uuid
-
         data['noticia_portal'] = False
         if not str(request.user) == "AnonymousUser" and token_noticia:
             try:
@@ -212,6 +211,7 @@ def MostrarNoticia(request, token_noticia=False):
                 try:
                     noticia_requerida = Noticia.objects.get(token=token_noticia, publicacion_activa=True)
                     CargarValores(noticia=noticia_requerida)
+                    return render(request, "web/noticia.html", data)
                 except:
                     return redirect('/')
     except:
@@ -220,14 +220,15 @@ def MostrarNoticia(request, token_noticia=False):
             try:
                 noticia_portal = getContenidoURL(f"https://api-portal.catamarca.gob.ar/api/v1/noticia/{token_noticia}")
                 data['noticia_portal'] = noticia_portal['data']['attributes']
+                data['noticia'] = None
                 return render(request, "web/noticia.html", data)
             except:
+                CargarValores()
                 messages.warning(request, f"Contenido no disponible")
                 return redirect('/')
         else:
             CargarValores()
             return render(request, "web/noticia.html", data)
-
 
 
 # 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
