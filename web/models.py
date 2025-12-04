@@ -104,6 +104,7 @@ class Suscriptos(models.Model):
 # 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 # 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 
+
 # Create your models here.
 class Noticia(models.Model):
     #definimos la fecha en la que comenzara la publicacion 
@@ -116,13 +117,31 @@ class Noticia(models.Model):
         verbose_name="Fin de publicacion",
         default=None,
         blank=True,
-        null=True
+        null=True,
+        help_text="Fecha en la que caduca la publicacion, si esta vacia se publicara indefinidamente y permaneciendo en el archivo",
+
     )
-    publicacion_activa = models.BooleanField(default=False)
-    enviar_boletin = models.BooleanField(default=False)
+    publicacion_activa = models.BooleanField(
+        default=False,
+        help_text="si esta activo esta casilla, estara visible la noticia",
+                                             )
+    enviar_boletin = models.BooleanField(
+        help_text="si esta activo esta casilla se enviaran las notificaion infromando una nueva noticia, este evento se activa al momento que se crea una nueva noticia o se actualiza",
+        default=False,
+    )
     titulo = models.CharField(max_length=200, blank=False)  # Título
     copete = models.CharField(max_length=200, blank=True)  # Subtitulo o copete
-    contenido = models.TextField(blank=False)  # contenido 
+    contenido = models.TextField(blank=False,
+            help_text="""
+                se respeta el los saltos de lineas
+                Para agregar enlace: se ecribe entre dos simbolos numeral usando como separador un @ entre el enlcae y el texto para mostrar #tuenlace@texto_para_mostrar#
+                Ejemplo: texto normal #http://www.tuenlace.com@el_texto_del_enlace# a un enlace HTML
+                Para marcar un texto en negrita: **
+                Ejemplo: texto normal *texto en negrita* texto normal
+                aplica tambien para el contenido destacado 
+
+            """
+    )  # contenido 
     imagen = models.ImageField(upload_to='noticias/', blank=True, null=True)  # Ruta donde se almacenarán las imágenes
     ajustar_imagen = models.IntegerField(
         default=100, 
@@ -132,11 +151,21 @@ class Noticia(models.Model):
             MaxValueValidator(100)  # máximo 100
         ]
         )
-    epigrafe = models.TextField(blank=True)  # Descripción de la imagen
+    epigrafe = models.TextField(blank=True, # Descripción de la imagen
+        help_text=f"texto que se mostrara debajo de la imagen {ajustar_imagen} {ajustar_imagen} {ajustar_imagen}"  
+    )  
     token = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
     titulo_destacado = models.CharField(max_length=200, null=True, blank=True)  # titulo del contenido destacado 
-    contenido_destacado = models.TextField(null=True, blank=True)  # Contenido destacado 
-    estilo_destacado = models.CharField(max_length=30, choices=COLORES, default='', null=True)    
+    contenido_destacado = models.TextField(
+        null=True, 
+        # help_text="contenido destacado aplica el",
+        blank=True)  # Contenido destacado 
+    estilo_destacado = models.CharField(
+        help_text="Estilo que solo aplica al contenido destacado",
+        max_length=30, 
+        choices=COLORES, 
+        default='', 
+        null=True)    
     # Fecha y hora al momento de crear
     registro_creado = models.DateTimeField(
         auto_now_add=True,
@@ -154,7 +183,6 @@ class Noticia(models.Model):
 
 
     #     super().save(*args, **kwargs)
-    
 
 # 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 # 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
