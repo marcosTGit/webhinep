@@ -16,16 +16,18 @@
                     {% endif %}
                     <div class="col-md-4 g-3">
                         <div class="card" style="">
-                            <img src="{{ noticia.imagen.url }}" class="img-fluid card-img-top"  style="max-height: 18rem;">
+
+                            
+                            <img src="{% if noticia.imagen %} {{ noticia.imagen.url }} {% else %} /static/web/images/logo.png {% endif %}" class="img-fluid card-img-top"  style="{% if noticia.imagen %} max-height: 18rem; {% endif %}">
 
                             <div class="card-header bg-req-quaternary">
                                 <a href="/noticia/{{ noticia.token }}">
-                                    <h5 class="card-title text-white">{{ noticia.titulo }}</h5>
+                                    <h5 class="card-title text-white text-uppercase">{{ noticia.titulo }}</h5>
                                 </a>
                             </div>
                             {% if noticia.contenido|length %}
                             <div class="card-body">
-                                <p class="card-text">{{n.copete}}</p>
+                                <p class="card-text">{{ noticia.copete}}</p>
                                 {% comment %} <p class="card-text">{{ noticia.contenido }}</p> {% endcomment %}
                                 {% comment %} <p class="card-text">{{ noticia.attributes.visitas }}</p> {% endcomment %}
                                 {% comment %} <p class="card-text">{{ noticia.id }}</p> {% endcomment %}
