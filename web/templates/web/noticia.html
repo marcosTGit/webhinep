@@ -25,11 +25,13 @@
                 <!-- Título de la noticia -->
                 <div class="col-12">
                     <h5 class="mb-3 text-left">{{ noticia.copete }}</h5>
-                    <h1 class="mb-1 text-center">{{ noticia.titulo }}</h1>
+                    <h1 class="mb-1 text-center text-uppercase ">{{ noticia.titulo }}</h1>
                 </div>
                 
                 <!-- Imagen de la noticia -->
                 <div class="row">
+                  
+
                     {% if noticia.imagen %}
                         {% if noticia.contenido_destacado %}
                             <div class="col-6 text-center mt-2">
@@ -48,10 +50,9 @@
                     {% endif %}
 
                     {% if noticia.contenido_destacado %}
-                        <div class="col-6 {{noticia.estilo_destacado}}">
-                            <h4 class="mb-3 mt-3 text-center"><strong>{{ noticia.titulo_destacado }}</strong></h4>
+                        <div class="alert rounded {% if noticia.imagen %} col-6 {% else %} col-12 {% endif %}  {{noticia.estilo_destacado}}">
+                            <h4 class="mb-3 mt-3 text-left"><strong>{{ noticia.titulo_destacado }}</strong></h4>
                             <p class="text-justify">
-                              {{noticia.estilo_destacado}}
                                 {{ noticia.contenido_destacado|linebreaksbr|safe }}
                             </p>
                         </div>
