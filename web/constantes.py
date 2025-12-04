@@ -2,20 +2,20 @@
 # Create your models here.
 # Create your models here.
 colores = [
-    ('', 'sin color'),
-    ('txt-primary', 'texto blanco texto - azul'),
-    ('txt-secondary', 'texto - blanco'),
-    ('txt-tertiary', 'texto - verde'),
-    ('txt-quaternary', 'texto - petroleo'),
-    ('txt-quinary', 'texto - rosa'),
-    ('text-dark', 'texto - negro'),
-    ('text-danger', 'texto - rojo'),
-    ('text-warning', 'texto - amarillo'),
-    ('bg-req-secondary', 'fondo-amarillo'),
-    ('bg-req-tertiary text-white', 'fondo-verde'),
-    ('bg-req-quaternary text-white', 'fondo-petroleo'),
-    ('bg-req-quinary', 'fondo-rosa'),
-    ('bg-req-primary text-white', '* texto blanco fondo azul'),
+    ('', 'Slider texto blanco'),
+    ('txt-primary', 'Slider texto blanco texto - azul'),
+    ('txt-secondary', 'Slider texto - blanco **'),
+    ('txt-tertiary', 'Slider texto - verde'),
+    ('txt-quaternary', 'Slider texto - petroleo'),
+    ('txt-quinary', 'Slider texto - rosa'),
+    ('text-dark', 'Slider texto - negro'),
+    ('text-danger', 'Slider texto - rojo'),
+    ('text-warning', 'Slider texto - amarillo'),
+    ('bg-req-secondary', 'contenido-destacado fondo-amarillo **'),
+    ('bg-req-tertiary text-white', 'contenido-destacado fondo-verde'),
+    ('bg-req-quaternary text-white', 'contenido-destacado fondo-petroleo'),
+    ('bg-req-quinary', 'contenido-destacado fondo-rosa'),
+    ('bg-req-primary text-white', 'contenido-destacado texto blanco fondo azul'),
 ]
 COLORES = sorted(colores, key=lambda x: x[1])
 
